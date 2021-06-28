@@ -11,6 +11,7 @@
           <CCardHeader>
             Products
           </CCardHeader>
+          <!-- TABLE -->
           <CCardBody>
             <CDataTable
               class="mb-0 table-outline"
