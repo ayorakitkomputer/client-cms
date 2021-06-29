@@ -12,8 +12,46 @@
               Dashboard
             </a></router-link
           >
-          <div class="sb-sidenav-menu-heading">Interface</div>
-
+          <!-- 
+          <div class="sb-sidenav-menu-heading">
+            <i class="bi bi-cpu"></i> Products
+          </div>
+          <router-link class="nav-link" to="/cpu"
+            ><div class="sb-nav-link-icon"></div>
+            CPU</router-link
+          >
+          <router-link class="nav-link" to="/power-supplies"
+            ><div class="sb-nav-link-icon"></div>
+            POWER SUPPLIES</router-link
+          >
+          <router-link class="nav-link" to="/gpu"
+            ><div class="sb-nav-link-icon"></div>
+            GPU</router-link
+          >
+          <router-link class="nav-link" to="/motherboard"
+            ><div class="sb-nav-link-icon"></div>
+            MOTHERBOARD</router-link
+          >
+          <router-link class="nav-link" to="/case"
+            ><div class="sb-nav-link-icon"></div>
+            CASE</router-link
+          >
+          <router-link class="nav-link" to="/memory"
+            ><div class="sb-nav-link-icon"></div>
+            MEMORY</router-link
+          >
+          <router-link class="nav-link" to="/monitors"
+            ><div class="sb-nav-link-icon"></div>
+            MONITOR</router-link
+          >
+          <router-link class="nav-link" to="/caseFan"
+            ><div class="sb-nav-link-icon"></div>
+            CASE FAN</router-link
+          >
+          <router-link class="nav-link" to="/storages"
+            ><div class="sb-nav-link-icon"></div>
+            STORAGE</router-link
+          > -->
           <a
             class="nav-link collapsed"
             href="#"
@@ -122,17 +160,7 @@
               </div>
             </nav>
           </div>
-          <div class="sb-sidenav-menu-heading">Addons</div>
-          <a class="nav-link" href="charts.html">
-            <div class="sb-nav-link-icon">
-              <i class="fas fa-chart-area"></i>
-            </div>
-            Charts
-          </a>
-          <a class="nav-link" href="tables.html">
-            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-            Tables
-          </a>
+          <div class="sb-sidenav-menu-heading">User Details</div>
         </div>
       </div>
     </nav>

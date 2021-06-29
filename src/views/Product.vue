@@ -71,9 +71,6 @@
       PowerSupplyTable,
       StorageTable,
     },
-    methods: {
-      deleteCpu() {},
-    },
     data() {
       return {
         productData: [],
@@ -87,10 +84,10 @@
     },
     watch: {
       $route() {
+        this.productData = [];
         this.productData = `http://localhost:3000${this.$route.path}`;
       },
     },
-    computed: {},
   };
 </script>
 
