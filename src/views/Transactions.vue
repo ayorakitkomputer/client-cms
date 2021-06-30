@@ -23,7 +23,7 @@
 					<zg-caption>
 						<button @click.prevent="_exportDataToPDF()">Download PDF</button>
 					</zg-caption>
-					<zg-data src="http://localhost:3000/history/transactions">
+					<zg-data src="http://3.95.218.141:3000/history/transactions">
 						<zg-param name="idKey" value="_id"></zg-param>
 						<zg-param name="headers" :value="access_token"></zg-param>
 						<zg-column index="_id" header="ID"></zg-column>
@@ -36,10 +36,8 @@
 							index="shipmentStatus"
 							header="Shipment"
 							type="toggle"
-							type-toggle-options='["false","true"]'
-							renderer="ren"
+							type-toggle-options='["Not Shipped","Shipped"]'
 						>
-							<span>{{ "[[index.shipmentStatus]]" === true }} ini</span>
 						</zg-column>
 					</zg-data>
 				</zing-grid>
@@ -60,6 +58,9 @@ export default {
 		};
 	},
 	created() {
+		if (!localStorage.access_token) {
+			this.$router.push("/login");
+		}
 		let token = localStorage.access_token;
 		this.access_token = `{"access_token": "${token}"}`;
 	},

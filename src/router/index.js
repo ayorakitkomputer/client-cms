@@ -6,6 +6,11 @@ Vue.use(VueRouter);
 
 const routes = [
 	{
+		path: "/login",
+		name: "Login",
+		component: () => import("../views/Login.vue"),
+	},
+	{
 		path: "/",
 		name: "Home",
 		component: Home,
@@ -54,11 +59,6 @@ const routes = [
 		path: "/case_fan",
 		name: "Case Fan",
 		component: () => import("../views/Products.vue"),
-	},
-	{
-		path: "/login",
-		name: "Login",
-		component: () => import("../views/Login.vue"),
 	},
 ];
 

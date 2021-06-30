@@ -21,14 +21,12 @@
 					role="grid"
 					editor="inline"
 					viewport="tablet-portrait"
+					theme="ios"
 				>
 					<zg-data :src="dataUrl">
 						<zg-param name="recordPath" value="data"></zg-param>
 						<zg-param name="idKey" value="_id"></zg-param>
-						<zg-param
-							name="headers"
-							value='{"access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZGMwZmZhYzNmNWM1NWRkNGUwZTZhYyIsImVtYWlsIjoiamV0aHJvLmthcGFudG93QGdtYWlsLmNvbSIsImxhc3RuYW1lIjoiUGllcmNlIiwiaWF0IjoxNjI1MDM0NzUxfQ.gXFa6pctO0a4rRFUBfP0Pv-oi6OGG9SJCwAnhSHk1t8"}'
-						></zg-param>
+						<zg-param name="headers" :value="access_token"></zg-param>
 						<StorageTable v-if="this.$route.path === '/storages'" />
 						<CpuTable v-if="this.$route.path === '/cpu'" />
 						<PowerSupplyTable v-if="this.$route.path === '/power_supplies'" />
@@ -75,14 +73,15 @@ export default {
 	},
 	created() {
 		if (this.$route.path) {
-			console.log(`http://localhost:3000${this.$route.path}`);
-			this.dataUrl = `http://localhost:3000${this.$route.path}`;
+			this.dataUrl = `http://3.95.218.141:3000${this.$route.path}`;
 		}
+		let token = localStorage.access_token;
+		this.access_token = `{"access_token": "${token}"}`;
 	},
 	watch: {
 		$route() {
 			this.dataUrl = "";
-			this.dataUrl = `http://localhost:3000${this.$route.path}`;
+			this.dataUrl = `http://3.95.218.141:3000${this.$route.path}`;
 		},
 	},
 };
