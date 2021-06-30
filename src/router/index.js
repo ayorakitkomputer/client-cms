@@ -1,135 +1,77 @@
 import Vue from "vue";
-import Router from "vue-router";
+import VueRouter from "vue-router";
+import Home from "../views/Transactions.vue";
 
-// Containers
-const TheContainer = () => import("@/containers/TheContainer");
+Vue.use(VueRouter);
 
-// Views
-const Dashboard = () => import("@/views/Dashboard");
-const Add = () => import("@/views/component/Add");
+const routes = [
+	{
+		path: "/",
+		name: "Home",
+		component: Home,
+	},
+	{
+		path: "/cpu",
+		name: "Cpu",
+		component: () => import("../views/Products.vue"),
+	},
+	{
+		path: "/motherboard",
+		name: "Motherboard",
+		component: () => import("../views/Products.vue"),
+	},
+	{
+		path: "/memory",
+		name: "Memory",
+		component: () => import("../views/Products.vue"),
+	},
+	{
+		path: "/storages",
+		name: "Storage",
+		component: () => import("../views/Products.vue"),
+	},
+	{
+		path: "/gpu",
+		name: "Gpu",
+		component: () => import("../views/Products.vue"),
+	},
+	{
+		path: "/case",
+		name: "Case",
+		component: () => import("../views/Products.vue"),
+	},
+	{
+		path: "/power_supplies",
+		name: "Power Supply",
+		component: () => import("../views/Products.vue"),
+	},
+	{
+		path: "/monitors",
+		name: "Monitor",
+		component: () => import("../views/Products.vue"),
+	},
+	{
+		path: "/case_fan",
+		name: "Case Fan",
+		component: () => import("../views/Products.vue"),
+	},
+	{
+		path: "/login",
+		name: "Login",
+		component: () => import("../views/Login.vue"),
+	},
+];
 
-// Views - Components
-const CPU = () => import("@/views/component/CPU");
-const Motherboard = () => import("@/views/component/Motherboard");
-const Memory = () => import("@/views/component/Memory");
-const Storage = () => import("@/views/component/Storage");
-const GPU = () => import("@/views/component/GPU");
-const Case = () => import("@/views/component/Case");
-const PowerSupply = () => import("@/views/component/PowerSupply");
-const Monitor = () => import("@/views/component/Monitor");
-
-const Chat = () => import("@/views/chat/LiveChat");
-
-// Views - Pages
-const Login = () => import("@/views/account/Login");
-const Register = () => import("@/views/account/Register");
-
-Vue.use(Router);
-
-export default new Router({
-  mode: "hash", // https://router.vuejs.org/api/#mode
-  linkActiveClass: "active",
-  scrollBehavior: () => ({ y: 0 }),
-  routes: configRoutes(),
+const router = new VueRouter({
+	mode: "history",
+	base: process.env.BASE_URL,
+	routes,
 });
 
-function configRoutes() {
-  return [
-    {
-      path: "/",
-      redirect: "/dashboard",
-      name: "Admin",
-      component: TheContainer,
-      children: [
-        {
-          path: "dashboard",
-          name: "Dashboard",
-          component: Dashboard,
-        },
-        {
-          path: "create",
-          name: "Add",
-          component: Add,
-        },
-        {
-          path: "chat",
-          name: "Chat",
-          component: Chat,
-        },
-        {
-          path: "component",
-          redirect: "/component/cpu",
-          name: "Component",
-          component: {
-            render(c) {
-              return c("router-view");
-            },
-          },
-          children: [
-            {
-              path: "cpu",
-              name: "CPU",
-              component: CPU,
-            },
-            {
-              path: "motherboard",
-              name: "Motherboard",
-              component: Motherboard,
-            },
-            {
-              path: "memory",
-              name: "Memory",
-              component: Memory,
-            },
-            {
-              path: "storage",
-              name: "Storage",
-              component: Storage,
-            },
-            {
-              path: "gpu",
-              name: "GPU",
-              component: GPU,
-            },
-            {
-              path: "case",
-              name: "Case",
-              component: Case,
-            },
-            {
-              path: "powersupply",
-              name: "PowerSupply",
-              component: PowerSupply,
-            },
-            {
-              path: "monitor",
-              name: "Monitor",
-              component: Monitor,
-            },
-          ],
-        },
-      ],
-    },
-    {
-      path: "/account",
-      name: "Account",
-      component: {
-        render(c) {
-          return c("router-view");
-        },
-      },
-      children: [
-        {
-          path: "login",
-          name: "Login",
-          component: Login,
-        },
-        {
-          path: "register",
-          name: "Register",
-          component: Register,
-        },
-      ],
-    },
-  ];
-}
+router.beforeEach((to, from, next) => {
+	if (to.name === "Login" && localStorage.access_token) next(false);
+	else if (to.name !== "Login" && !localStorage.access_token) next({ name: "Login" });
+	else next();
+});
+
+export default router;
