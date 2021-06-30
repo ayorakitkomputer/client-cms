@@ -25,10 +25,7 @@
 					</zg-caption>
 					<zg-data src="http://localhost:3000/history/transactions">
 						<zg-param name="idKey" value="_id"></zg-param>
-						<zg-param
-							name="headers"
-							value='{"access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZGMwZmZhYzNmNWM1NWRkNGUwZTZhYyIsImVtYWlsIjoiamV0aHJvLmthcGFudG93QGdtYWlsLmNvbSIsImxhc3RuYW1lIjoiUGllcmNlIiwiaWF0IjoxNjI1MDM0NzUxfQ.gXFa6pctO0a4rRFUBfP0Pv-oi6OGG9SJCwAnhSHk1t8"}'
-						></zg-param>
+						<zg-param name="headers" :value="access_token"></zg-param>
 						<zg-column index="_id" header="ID"></zg-column>
 						<zg-column index="createdAt" header="Date" type="date" sort-desc="true"></zg-column>
 						<zg-column index="user.firstname, user.lastname" header="Customer"></zg-column>
@@ -40,7 +37,10 @@
 							header="Shipment"
 							type="toggle"
 							type-toggle-options='["false","true"]'
-						></zg-column>
+							renderer="ren"
+						>
+							<span>{{ "[[index.shipmentStatus]]" === true }} ini</span>
+						</zg-column>
 					</zg-data>
 				</zing-grid>
 			</div>
@@ -54,6 +54,15 @@ import "jspdf-autotable";
 
 export default {
 	name: "Transactions",
+	data() {
+		return {
+			access_token: "",
+		};
+	},
+	created() {
+		let token = localStorage.access_token;
+		this.access_token = `{"access_token": "${token}"}`;
+	},
 	methods: {
 		_exportDataToPDF() {
 			const zgRef = document.querySelector("zing-grid");

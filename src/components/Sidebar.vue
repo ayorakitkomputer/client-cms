@@ -19,8 +19,8 @@
 		<li class="nav-item active">
 			<a class="nav-link" href="#" @click.prevent="$router.push('/')">
 				<i class="fas fa-fw fa-tachometer-alt"></i>
-				<span>Dashboard</span></a
-			>
+				<span>Dashboard</span>
+			</a>
 		</li>
 
 		<!-- Divider -->
