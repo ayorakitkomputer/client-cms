@@ -25,7 +25,7 @@
 							Download PDF
 						</button>
 					</zg-caption>
-					<zg-data src="https://ayorakitkomputer.herokuapp.com//history/transactions">
+					<zg-data src="https://ayorakitkomputer.herokuapp.com/history/transactions">
 						<zg-param name="idKey" value="_id"></zg-param>
 						<zg-param name="headers" :value="access_token"></zg-param>
 						<zg-column index="_id" header="ID"></zg-column>
